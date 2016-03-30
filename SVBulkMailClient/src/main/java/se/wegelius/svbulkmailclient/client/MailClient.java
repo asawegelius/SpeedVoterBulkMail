@@ -44,7 +44,7 @@ public class MailClient {
         return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_XML).get(responseType);
     }
 
-        public ClientResponse createJson(String email, String message) throws UniformInterfaceException {
+    public ClientResponse createJson(String email, String message) throws UniformInterfaceException {
         MultivaluedMap queryParams = new MultivaluedMapImpl();
         queryParams.add("email", email);
         queryParams.add("message", message);
@@ -52,7 +52,7 @@ public class MailClient {
         ClientResponse response = webResource.queryParams(queryParams).path("json/create").post(ClientResponse.class);
         return response;
     }
-        
+
     public ClientResponse create(String email, String message) throws UniformInterfaceException {
         MultivaluedMap queryParams = new MultivaluedMapImpl();
         queryParams.add("email", email);

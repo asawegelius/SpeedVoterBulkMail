@@ -32,7 +32,7 @@ public class MailService {
 
     @Context
     private ServletContext sctx;          // dependency injection
-    private static MailListDao dao; // set in populate()
+    private static MailListDao dao; 
 
     public MailService() {
     }
@@ -99,13 +99,12 @@ public class MailService {
             @QueryParam("message") String message) {
         checkContext();
         String msg = null;
-        System.out.println("email: " + email + " message: " + message);
         // Require both properties to create.
         if (email == null || message == null) {
             msg = "Property 'email' or 'message' is missing.\n";
             return Response.status(Response.Status.BAD_REQUEST).
                     entity(msg).
-                    type(MediaType.TEXT_PLAIN).
+                    type(MediaType.APPLICATION_JSON).
                     build();
         }
         // Otherwise, create the Mail and add it to the database.
@@ -113,10 +112,7 @@ public class MailService {
         mail.setEmail(email);
         mail.setMessage(message);
         dao.save(mail);
-        int id = mail.getEmailsId();
-        msg = "Mail " + id + " created: (email = " + email + " message = " + message + ").\n";
-        System.out.println(msg);
-        return toRequestedType(mail.getEmailsId(), "application/json");
+        return Response.ok(toJson(mail), MediaType.APPLICATION_JSON).build();
     }
 
     @POST
@@ -245,7 +241,7 @@ public class MailService {
             String msg = id + " is a bad ID.\n";
             return Response.status(Response.Status.BAD_REQUEST).
                     entity(msg).
-                    type(MediaType.TEXT_PLAIN).
+                    type(MediaType.APPLICATION_JSON).
                     build();
         } else if (type.contains("json")) {
             return Response.ok(toJson(mail), type).build();
