@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 29, 2016 8:03:14 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="mail_list" name="se.wegelius.svbulkmail.model.CorruptedMail" optimistic-lock="version" table="corrupted_mail_list">
+    <id name="corruptedMailId" type="java.lang.Integer">
+      <column name="corrupted_mail_id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="corruptedMail" type="string">
+      <column length="45" name="corrupted_mail"/>
+    </property>
+    <property name="corruptedMailMsg" type="string">
+      <column length="45" name="corrupted_mail_msg"/>
+    </property>
+  </class>
+</hibernate-mapping>

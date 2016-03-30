@@ -1,0 +1,9 @@
+se\wegelius\svbulkmail\model\CorruptedMail.class
+se\wegelius\svbulkmail\dao\IOlpDao.class
+se\wegelius\svbulkmail\dao\CorruptedMailListDao.class
+se\wegelius\svbulkmail\dao\OlpDao.class
+se\wegelius\svbulkmail\dao\MailListDao.class
+se\wegelius\svbulkmail\service\MailService.class
+se\wegelius\svbulkmail\dao\HibernateUtil.class
+se\wegelius\svbulkmail\service\CorruptedMailService.class
+se\wegelius\svbulkmail\model\Mail.class
