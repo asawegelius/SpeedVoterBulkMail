@@ -86,7 +86,6 @@ public class OlpDao<T, ID extends Serializable> implements IOlpDao<T, ID> {
 				e.printStackTrace();
 			}
 		}
-                session.close();
 	}
 
 	/**

@@ -32,7 +32,7 @@ public class MailService {
 
     @Context
     private ServletContext sctx;          // dependency injection
-    private static MailListDao dao; 
+    private static MailListDao dao;
 
     public MailService() {
     }
@@ -58,6 +58,7 @@ public class MailService {
     @Path("/json")
     public Response getJson() {
         checkContext();
+        Set<Mail> set = dao.getAll();
         return Response.ok(toJson(dao.getAll()), "application/json").build();
     }
 
@@ -139,6 +140,39 @@ public class MailService {
         int id = mail.getEmailsId();
         msg = "Mail " + id + " created: (email = " + email + " message = " + message + ").\n";
         return Response.ok(msg, "text/plain").build();
+    }
+
+    @PUT
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("json/update/{id: \\d+}")
+    public Response updateJson(@PathParam("id") int id,
+            @QueryParam("email") String email,
+            @QueryParam("message") String message) {
+        checkContext();
+
+        System.out.println("in put json got request for id " + id);
+        Mail m = dao.findByID(id);
+        // Check that sufficient data are present to do an edit.
+        String msg = null;
+        if (email == null && message == null) {
+            msg = "Neither email nor message is given: nothing to edit.\n";
+        } else if (m == null) {
+            msg = "There is no email with ID " + id + "\n";
+        }
+
+        if (msg != null) {
+            return Response.status(Response.Status.BAD_REQUEST).
+                    entity(msg).
+                    type(MediaType.APPLICATION_JSON).
+                    build();
+        } else {
+            // Update.
+            m.setEmail(email);
+            m.setMessage(message);
+        }
+        dao.update(m);
+
+        return Response.ok(toJson(m), MediaType.APPLICATION_JSON).build();
     }
 
     @PUT

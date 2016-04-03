@@ -30,7 +30,7 @@ public class MailClient {
 
     private WebResource webResource;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/SVBulkMail/rest/mail";
+    private static final String BASE_URI = "http://188.181.85.75/SVBulkMail/rest/mail";
 
     public MailClient() {
         com.sun.jersey.api.client.config.ClientConfig config = new com.sun.jersey.api.client.config.DefaultClientConfig();
@@ -57,13 +57,25 @@ public class MailClient {
         MultivaluedMap queryParams = new MultivaluedMapImpl();
         queryParams.add("email", email);
         queryParams.add("message", message);
-        System.out.println(queryParams.toString());
         ClientResponse response = webResource.queryParams(queryParams).path("plain/create").post(ClientResponse.class);
         return response;
     }
+    
+    public ClientResponse updateJson(int id, String email, String message) throws UniformInterfaceException {
+        MultivaluedMap queryParams = new MultivaluedMapImpl();
+        queryParams.add("id", Integer.toString(id));
+        queryParams.add("email", email);
+        queryParams.add("message", message);
+        System.out.println(queryParams.toString());
+        return webResource.queryParams(queryParams).path(java.text.MessageFormat.format("json/update/{0}", new Object[]{id})).put(ClientResponse.class);
+    }
 
-    public ClientResponse update() throws UniformInterfaceException {
-        return webResource.path("update").put(ClientResponse.class);
+    public ClientResponse updatePlain(int id, String email, String message) throws UniformInterfaceException {
+        MultivaluedMap queryParams = new MultivaluedMapImpl();
+        queryParams.add("id", Integer.toString(id));
+        queryParams.add("email", email);
+        queryParams.add("message", message);
+        return webResource.queryParams(queryParams).path(java.text.MessageFormat.format("plain/update/{0}", new Object[]{id})).put(ClientResponse.class);
     }
 
     public ClientResponse delete(String id) throws UniformInterfaceException {
@@ -74,6 +86,12 @@ public class MailClient {
         WebResource resource = webResource;
         resource = resource.path("plain");
         return resource.accept(javax.ws.rs.core.MediaType.TEXT_PLAIN).get(String.class);
+    }
+    
+    public ClientResponse getJson(){
+           WebResource resource = webResource;
+        resource = resource.path("json");
+        return resource.accept(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(ClientResponse.class);
     }
 
     public ClientResponse getJson(int id) {

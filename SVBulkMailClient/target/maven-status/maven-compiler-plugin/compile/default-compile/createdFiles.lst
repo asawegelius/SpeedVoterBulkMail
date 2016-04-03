@@ -1,4 +1,10 @@
+se\wegelius\svbulkmailclient\client\SVSendMails$1.class
+se\wegelius\svbulkmailclient\client\SVSendMails.class
+se\wegelius\svbulkmailclient\model\BulkMail$1.class
+se\wegelius\svbulkmailclient\client\MailClientTest.class
+se\wegelius\svbulkmailclient\client\SVCorupptedClient.class
+se\wegelius\svbulkmailclient\model\BulkMail.class
 se\wegelius\svbulkmailclient\model\Mail.class
 se\wegelius\svbulkmailclient\client\MailClient$1.class
+se\wegelius\svbulkmailclient\client\SVClientServlet.class
 se\wegelius\svbulkmailclient\client\MailClient.class
-se\wegelius\svbulkmailclient\controller\MailClientTest.class

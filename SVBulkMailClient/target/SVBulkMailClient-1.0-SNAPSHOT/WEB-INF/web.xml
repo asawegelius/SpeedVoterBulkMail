@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>SVClientServlet</servlet-name>
+        <servlet-class>se.wegelius.svbulkmailclient.client.SVClientServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SVCorupptedClient</servlet-name>
+        <servlet-class>se.wegelius.svbulkmailclient.client.SVCorupptedClient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SVSendMails</servlet-name>
+        <servlet-class>se.wegelius.svbulkmailclient.client.SVSendMails</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SVClientServlet</servlet-name>
+        <url-pattern>/SVClientServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SVCorupptedClient</servlet-name>
+        <url-pattern>/SVCorupptedClient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SVSendMails</servlet-name>
+        <url-pattern>/SVSendMails</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <display-name>SV Bulk Mail</display-name>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.htm</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

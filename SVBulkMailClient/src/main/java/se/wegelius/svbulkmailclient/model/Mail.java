@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class Mail {
-    private int id;
+    private int emailsId;
     private String email;
     private String message;
 
@@ -21,13 +21,13 @@ public class Mail {
     }
 
     public Mail(int id, String email, String message) {
-        this.id = id;
+        this.emailsId = id;
         this.email = email;
         this.message = message;
     }
 
-    public int getId() {
-        return id;
+    public int getEmailsId() {
+        return emailsId;
     }
 
     public String getEmail() {
@@ -38,8 +38,8 @@ public class Mail {
         return message;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setEmailsId(int id) {
+        this.emailsId = id;
     }
 
     public void setEmail(String email) {
